@@ -1,9 +1,8 @@
 package com.atm.demo;
 
-import com.atm.entity.Customer;
+import com.atm.service.CustomerService;
 import com.atm.util.TextUtil;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class AtmMain {
@@ -11,10 +10,13 @@ public class AtmMain {
     private static String id; //成员变量
     private static String pwd;
 
+    private static CustomerService customerService;
+
     public static void main(String[] args) {
+        customerService=new CustomerService();
         //测试客户端的数据
-        CustomerDemo customerDamo = CustomerDemo.getInstance();
-        List<Customer> customerList = customerDamo.getCustomerList();
+        /*CustomerDemo customerDamo = CustomerDemo.getInstance();
+        List<Customer> customerList = customerDamo.getCustomerList();*/
         /*for (Customer customer : customerList) {
             System.out.println("customer = " + customer);
         }*/
@@ -26,6 +28,7 @@ public class AtmMain {
             dowrite();
             //校验角色 验证卡号和密码
             docheckpwd(id,pwd);
+            customerService.checkip(id,pwd);
             i++;
         }
     }
@@ -33,7 +36,7 @@ public class AtmMain {
     //校验角色 验证账号密码
     private static void docheckpwd(String id,String pwd) {
         //根据长度校验角色
-        if (id.length()==8) {
+        if (id.length()==4) {
 
         }
     }
